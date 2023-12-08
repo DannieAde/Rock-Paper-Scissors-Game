@@ -3,8 +3,15 @@ import ChoiceButton from './ChoiceButton'
 
 const Result = ({ score, setScore, setGameStep, userChoice, computerChoice, verdict, setVerdict, setComputerChoice }) => {
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
-    setTimeout( () => verdict === 'You Win' && setScore(score + 1), 1100)
+    // setTimeout( () => verdict.toLowerCase() === 'you win' && setScore(score + 1), 1100)
+    const timeoutID = setTimeout(() => {
+      verdict.toLowerCase() === 'you win' && setScore(score + 1)
+    }, 1100);
+
+    return () => clearTimeout(timeoutID)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const headerStyle = {

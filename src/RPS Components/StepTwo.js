@@ -2,11 +2,14 @@ import { useEffect } from 'react'
 import React from 'react'
 import ChoiceButton from './ChoiceButton'
 
-const StepTwo = ({ userChoice, gameStep, setGameStep, computerChoice, handleComputerChoice }) => {
+const StepTwo = ({ userChoice, gameStep, setGameStep, computerChoice, handleComputerChoice, handleComputerChoiceRPSLS, gameChoice }) => {
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
-    setTimeout(() => handleComputerChoice(), 2000)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    setTimeout(() => {gameChoice === 'rps' ? handleComputerChoice() : handleComputerChoiceRPSLS()}, 2000)
     setTimeout(() => setGameStep(3), 3000)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const headerStyle = {

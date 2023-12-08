@@ -1,6 +1,6 @@
 import React from 'react'
 
-const RulesModal = ({ toggleShowRules }) => {
+const RulesModal = ({ toggleShowRules, gameChoice }) => {
   return (
     <div className="rules-container">
       <div className='rules-modal'>
@@ -8,7 +8,7 @@ const RulesModal = ({ toggleShowRules }) => {
           <h1>RULES</h1>
           <img onClick={toggleShowRules} className='icon-close' src="images/icon-close.svg" alt="" />
         </div>
-        <img className='images-rules' src="images/image-rules.svg" alt="" />
+        {gameChoice === 'rps' ? <img className='images-rules' src="images/image-rules.svg" alt="" /> : <img className='images-rules' src="images/image-rules-bonus.svg" alt="" />}
       </div>
     </div>
     

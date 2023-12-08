@@ -28,13 +28,70 @@ body {
   min-height: 100vh;
 }
 
+a, button, img {
+  cursor: pointer;
+}
+
 .App {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 2rem 0 0;
+  padding: 2rem 0 10rem;
   width: 100%;
+}
+
+.choose-game {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-image: var(--Radial-Gradient);
+  z-index: 3;
+  font-family: cursive;
+}
+
+.choose-game h1 {
+  color: white;
+  font-size: 4rem;
+  font-weight: 800;
+}
+
+.choose-game p {
+  color: white;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.choose-game .game-choice {
+  display: flex;
+  flex-direction: column;
+}
+
+.choose-game .game-choice button {
+  margin: 1rem 0;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+}
+
+.choose-game .game-choice button.rps {
+  background-color: hsl(230, 89%, 65%);
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.choose-game .game-choice button.rpsls {
+  background-color: hsl(349, 70%, 56%);
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 700;
 }
 
 .score-board {
@@ -95,6 +152,21 @@ body {
   background-size: contain;
 }
 
+.game-display-container.rpsls {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 8rem;
+  width: 30rem;
+  height: 30rem;
+  position: relative;
+  background-image: url(../public/images/bg-pentagon.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
 .game-display-container.no-background {
   display: flex;
   flex-direction: column;
@@ -118,16 +190,48 @@ body {
   bottom: 0;
 }
 
-.paper-button {
+.game-display-container .paper-button {
   position: absolute;
+  width: 168px;
   top: -3rem;
-  left: -3rem;
+  left: 387px;
 }
 
 .scissors-button {
   position: absolute;
   top: -3rem;
-  right: -3rem;
+  left: -3rem;
+}
+
+.game-display-container.rpsls .scissors-button {
+  position: absolute;
+  top: -2rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.game-display-container.rpsls .spock-button {
+  position: absolute;
+  left: -3rem;
+  top: 7rem;
+}
+
+.game-display-container.rpsls .paper-button {
+  position: absolute;
+  left: 22rem;
+  top: 7.5rem;
+}
+
+.game-display-container.rpsls .rock-button {
+  position: absolute;
+  left: 18rem;
+  top: 26rem;
+}
+
+.game-display-container.rpsls .lizard-button {
+  position: absolute;
+  left: 0;
+  top: 23rem;
 }
 
 .game-display-choice{
@@ -166,6 +270,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .rock-button .outer-circle {
@@ -183,10 +288,20 @@ body {
   box-shadow: 0px 6px 2px 0px hsl(40, 84%, 53%);
 }
 
+.spock-button .outer-circle {
+  background-image: var(--Cyan);
+  box-shadow: 0px 6px 2px 0px hsl(189, 58%, 57%);
+}
+
+.lizard-button .outer-circle {
+  background-image: var(--Lizard-Gradient);
+  box-shadow: 0px 6px 2px 0px hsl(261, 72%, 63%);
+}
+
 
 .rules {
   position: absolute;
-  bottom: 2rem;
+  /* top: 2rem; */
   right: 3rem;
 
   background: transparent;
@@ -275,7 +390,43 @@ body {
   color: hsl(349, 70%, 56%);
 }
 
+@media (min-width: 960px) {
+  .rules {
+    top: 2rem;
+  }
+}
+
+@media (max-width: 960px) {
+  .rules {
+    top: auto;
+    bottom: 1rem;
+  }
+}
+
 @media (max-width: 540px) {
+
+  .choose-game h1 {
+    font-size: 3rem;
+  }
+  
+  .choose-game p {
+    font-size: 1rem;
+  }
+  
+  .choose-game .game-choice button {
+    margin: 1rem 0;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+  }
+  
+  .choose-game .game-choice button.rps {
+    font-size: 1rem;
+  }
+  
+  .choose-game .game-choice button.rpsls {
+    font-size: 1rem;
+  }
+
   .score-board {
     border: 2px solid white;
     border-radius: 8px;
@@ -309,12 +460,53 @@ body {
     height: 5rem;
   }
 
+  .game-display-container .paper-button {
+    width: auto;
+    left: 10rem;
+  }
+
   .game-display-container {
     margin-top: 7rem;
     margin-bottom: 10rem;
     width: 15rem;
     height: 15rem;
     position: relative;
+  }
+
+  .game-display-container.rpsls {
+    margin-top: 6rem;
+    width: 15rem;
+    height: 15rem;
+  }
+
+  .game-display-container.rpsls .scissors-button {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .game-display-container.rpsls .spock-button {
+    position: absolute;
+    left: -3rem;
+    top: 2rem;
+  }
+  
+  .game-display-container.rpsls .paper-button {
+    position: absolute;
+    left: 11rem;
+    top: 2rem;
+  }
+  
+  .game-display-container.rpsls .rock-button {
+    position: absolute;
+    left: 9rem;
+    top: 12rem;
+  }
+  
+  .game-display-container.rpsls .lizard-button {
+    position: absolute;
+    left: 0;
+    top: 10rem;
   }
   
   .game-display-container.no-background {
@@ -347,6 +539,7 @@ body {
   .rules {
     bottom: 1rem;
     left: 50%;
+    top: auto;
     transform: translateX(-50%);
   }
 
@@ -389,6 +582,25 @@ body {
 }
 
 @media (max-width: 300px) {
+
+  .choose-game h1 {
+    font-size: 2rem;
+  }
+
+  .choose-game .game-choice button {
+    margin: 1rem 0;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+  }
+  
+  .choose-game .game-choice button.rps {
+    font-size: .6rem;
+  }
+  
+  .choose-game .game-choice button.rpsls {
+    font-size: .6rem;
+  }
+
   .score-board {
     border: 2px solid white;
     border-radius: 8px;
@@ -427,6 +639,18 @@ body {
     height: 2rem;
   }
 
+  .game-display-container .scissors-button {
+    width: auto;
+    top: -2rem;
+    left: -2rem;
+  }
+
+  .game-display-container .paper-button {
+    width: auto;
+    top: -2rem;
+    left: 7rem;
+  }
+
   .game-display-container {
     margin-top: 8rem;
     margin-bottom: 10rem;
@@ -448,6 +672,7 @@ body {
   }
 
   .rules {
+    top: auto;
     width: 100%;
     bottom: 1rem;
     left: 50%;
@@ -460,5 +685,57 @@ body {
 
   .rules-modal {
     padding: 1rem;
+  }
+
+  .game-display-container.rpsls .outer-circle {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .game-display-container.rpsls .inner-circle {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .game-display-container.rpsls img {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .game-display-container.rpsls {
+    margin-top: 6rem;
+    width: 10rem;
+    height: 10rem;
+  }
+
+  .game-display-container.rpsls .scissors-button {
+    position: absolute;
+    top: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .game-display-container.rpsls .spock-button {
+    position: absolute;
+    left: -1.5rem;
+    top: 2rem;
+  }
+  
+  .game-display-container.rpsls .paper-button {
+    position: absolute;
+    left: 4rem;
+    top: 2.2rem;
+  }
+  
+  .game-display-container.rpsls .rock-button {
+    position: absolute;
+    left: 6rem;
+    top: 9rem;
+  }
+  
+  .game-display-container.rpsls .lizard-button {
+    position: absolute;
+    left: 0rem;
+    top: 7.5rem;
   }
 }
